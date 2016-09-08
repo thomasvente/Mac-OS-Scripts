@@ -1,0 +1,24 @@
+#!/bin/sh
+
+# Enable Adobe Flash Player Auto Updater
+
+
+# --------------    edit the variables below this line    ----------------
+
+# mms.cfg file location
+mms_file="/Library/Application Support/Macromedia/mms.cfg"
+
+# ------------------    do not edit below this line    ------------------
+
+dirname=$(dirname "${mms_file}")
+
+mkdir -p "${dirname}"
+
+# Disable auto-update notification and enable Silent Updater
+cat <<EOT > "${mms_file}"
+AutoUpdateDisable=0
+AutoUpdateInterval=0
+SilentAutoUpdateEnable=1
+EOT
+
+exit $?
