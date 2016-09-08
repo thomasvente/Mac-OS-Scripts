@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# Script to replace Office 2011 Dock items with Office 2016 Dock items
+
+declare -a apps=("Microsoft Excel" "Microsoft Word" "Microsoft Outlook" "Microsoft PowerPoint");
+
+for app in "${apps[@]}"
+do
+OUTPUT=$(./dockutil --find "$app")
+if [[ $OUTPUT == *"was found"* ]]
+then
+echo "$app was found, replacing";
+./dockutil --add "/Applications/$app.app" --replacing "$app";
+
+fi
+done
